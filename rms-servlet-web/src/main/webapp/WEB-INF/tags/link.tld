@@ -21,4 +21,35 @@
             <fragment>false</fragment>
         </attribute>
     </tag>
+
+    <tag>
+        <name>href</name>
+        <tag-class>com.mitrais.rms.tag.Href</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>href</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>className</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>uriLink</name>
+            <required>false</required>
+            <type>boolean</type>
+        </attribute>
+    </tag>
 </taglib>

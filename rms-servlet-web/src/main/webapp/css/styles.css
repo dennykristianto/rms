@@ -17,3 +17,20 @@
      your background is light. */
   color: white;
 }
+
+.fullwidth {
+    width: 100%;
+}
+
+div.fixed {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 1000;
+}
+
+a.active{
+    text-decoration: underline;
+    font-weight: bold;
+    color:white;
+}
