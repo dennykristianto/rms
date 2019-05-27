@@ -1,6 +1,6 @@
 package com.mitrais.rms.tag;
 
-import com.mitrais.rms.helper.Helper;
+import com.mitrais.rms.helper.FileHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -20,7 +20,7 @@ public class Href extends SimpleTagSupport {
     public void doTag() throws JspException, IOException {
         PageContext pageContext = (PageContext) getJspContext();
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        String fHref= Helper.getRouteLink(request,href);
+        String fHref= FileHelper.getRouteLink(request,href);
         JspWriter out = getJspContext().getOut();
         if(uriLink && request.getAttribute("javax.servlet.forward.request_uri").equals(request.getContextPath()+'/'+href))
             className=className+" active";

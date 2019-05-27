@@ -2,7 +2,7 @@ package com.mitrais.rms.controller;
 
 import com.mitrais.rms.dao.UserDao;
 import com.mitrais.rms.dao.impl.UserDaoImpl;
-import com.mitrais.rms.helper.Helper;
+import com.mitrais.rms.helper.FileHelper;
 import com.mitrais.rms.model.User;
 
 import javax.servlet.ServletException;
@@ -27,7 +27,7 @@ public class UserServlet extends AbstractController {
             UserDao userDao = UserDaoImpl.getInstance();
             List<User> users = userDao.findAll();
             users=users.stream()
-                    .peek(user -> user.setPicture(Helper.getRouteLink(req,user.getPicture())))
+                    .peek(user -> user.setPicture(FileHelper.getRouteLink(req,user.getPicture())))
                     .collect(Collectors.toList());
             req.setAttribute("users", users);
 
@@ -49,27 +49,30 @@ public class UserServlet extends AbstractController {
             req.getParts().forEach(part -> {
                 if(part.getContentType()!=null) {
                     if (part.getContentType().contains("image"))
-                        user.setPicture(Helper.store("user", part, req));
+                        user.setPicture(FileHelper.store("user", part, req));
                 }
             });
         }
 
         UserDao userDao = UserDaoImpl.getInstance();
+        //handler
         userDao.update(user);
 
-        resp.sendRedirect(Helper.getRouteLink(req, "users/list"));
+        resp.sendRedirect(FileHelper.getRouteLink(req, "users/list"));
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id=req.getPathInfo().replace("/delete/","");
-        User user = generateUserFromRequest(req);
+//        User user = generateUserFromRequest(req);
+        User user = new User();
         user.setId(Long.valueOf(id));
 
         UserDao userDao = UserDaoImpl.getInstance();
+        /*handler*/
         userDao.delete(user);
 
-        resp.sendRedirect(Helper.getRouteLink(req, "users/list"));
+        resp.sendRedirect(FileHelper.getRouteLink(req, "users/list"));
     }
 
 
@@ -87,7 +90,7 @@ public class UserServlet extends AbstractController {
             req.getParts().forEach(part -> {
                 if(part.getContentType()!=null) {
                     if (part.getContentType().contains("image"))
-                        user.setPicture(Helper.store("user", part, req));
+                        user.setPicture(FileHelper.store("user", part, req));
                 }
             });
         }
@@ -95,7 +98,7 @@ public class UserServlet extends AbstractController {
         UserDao userDao = UserDaoImpl.getInstance();
         userDao.save(user);
 
-        resp.sendRedirect(Helper.getRouteLink(req, "users/list"));
+        resp.sendRedirect(FileHelper.getRouteLink(req, "users/list"));
     }
 
     private User generateUserFromRequest(HttpServletRequest req) {

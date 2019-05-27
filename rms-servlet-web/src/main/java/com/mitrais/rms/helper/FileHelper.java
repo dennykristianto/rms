@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class Helper {
+public class FileHelper {
     public static String getRouteLink(HttpServletRequest request, String href){
         try {
             return new URL(href).toString();

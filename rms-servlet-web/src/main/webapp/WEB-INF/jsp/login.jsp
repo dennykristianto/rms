@@ -1,4 +1,4 @@
-<%@ page import="com.mitrais.rms.helper.Helper" %>
+<%@ page import="com.mitrais.rms.helper.FileHelper" %>
 <%@include file="../include/header.jsp" %>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
@@ -8,7 +8,7 @@
             <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
                 <h2 class="mdl-card__title-text" style="text-align: center">Resources Management System</h2>
             </div>
-            <form action="<%=Helper.getRouteLink(request,"account/login")%>" method="post">
+            <form action="<%=FileHelper.getRouteLink(request,"account/login")%>" method="post">
                 <div class="mdl-card__supporting-text">
 
                     <div class="mdl-color-text--accent" style="text-align: center">

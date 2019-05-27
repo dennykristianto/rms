@@ -1,5 +1,5 @@
-<%@ page import="com.mitrais.rms.helper.Helper" %>
-<%@ page language="java" pageEncoding="UTF-8" session="false" %>
+<%@ page import="com.mitrais.rms.helper.FileHelper" %>
+<%@ page language="java" pageEncoding="UTF-8" session="true" %>
 <%@ taglib prefix="rms" uri="/WEB-INF/tags/link.tld" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -36,13 +36,17 @@
                             id="edit${user.id}">Edit
                         </a>
                     </div>
-                    <div><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="delete-${user.id}">Delete</a>
+
+                    <div>
+                        <c:if test="${user.id != sessionScope.user}">
+                            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="delete-${user.id}">Delete</a>
+                        </c:if>
                     </div>
                 </td>
 
                 <dialog class="mdl-dialog" id="dialog_edit${user.id}">
                     <h4 class="mdl-dialog__title">Edit user ${user.name}</h4>
-                    <form action="<%=Helper.getRouteLink(request,"users")%>/${user.id}" method="post" enctype="multipart/form-data">
+                    <form action="<%=FileHelper.getRouteLink(request,"users")%>/${user.id}" method="post" enctype="multipart/form-data">
                         <div class="mdl-dialog__content">
                             <input type="hidden" name="_method" value="put"/>
                             <div class="mdl-textfield mdl-js-textfield">
@@ -144,7 +148,7 @@
         $("[id*='delete']").click(function(){
             var selectedId=$(this).attr('id').replace('delete-','');
             if(confirm("Are you sure want to delete this user?")){
-                window.location.href="<%=Helper.getRouteLink(request,"users/delete/")%>"+selectedId
+                window.location.href="<%=FileHelper.getRouteLink(request,"users/delete/")%>"+selectedId
             }
         })
     })

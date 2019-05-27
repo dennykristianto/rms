@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "*")
-public class LoginCheck implements Filter {
+public class LoginCheckFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
