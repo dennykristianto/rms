@@ -36,7 +36,7 @@
                             id="edit${user.id}">Edit
                         </a>
                     </div>
-                    <div><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="<%=Helper.getRouteLink(request,"users/delete/")%>${user.id}">Delete</a>
+                    <div><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="delete-${user.id}">Delete</a>
                     </div>
                 </td>
 
@@ -140,6 +140,12 @@
         });
         $(".close").click(function () {
             dialog.close();
+        })
+        $("[id*='delete']").click(function(){
+            var selectedId=$(this).attr('id').replace('delete-','');
+            if(confirm("Are you sure want to delete this user?")){
+                window.location.href="<%=Helper.getRouteLink(request,"users/delete/")%>"+selectedId
+            }
         })
     })
 
